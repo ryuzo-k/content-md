@@ -10,3 +10,4 @@
   - 間
   - 速さ
 - https://www.youtube.com/watch?v=nhoffNIvvnw&t=102s
+- C

@@ -5,3 +5,4 @@
 - https://www.youtube.com/watch?v=YxnQaGiHlF4
 - https://www.youtube.com/watch?v=g5GaBnavBrY
 - https://blog.samaltman.com/the-gentle-singularity
+- content.md quick action test (delete)

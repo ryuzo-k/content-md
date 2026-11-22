@@ -1,9 +1,9 @@
 // Photon（Spectrum）から届いた iMessage を受け取る。
-// 本人から届いた文のメッセージを content.md に1つの箇条書きとして足し、足せたらステッカーを貼る。文の返信はしない。
+// 本人から届いた文のメッセージを content.md に1つの箇条書きとして足し、足せたら ✅ のリアクションを付ける。文の返信はしない。
 import { verifySpectrumSignature, slimEnvelopeSchema } from "@spectrum-ts/core/webhook";
 import { toBullet, appendBullet } from "../lib/bullet.mjs";
 import { addBullet } from "../lib/github.mjs";
-import { placeSticker } from "../lib/sticker.mjs";
+import { react } from "../lib/react.mjs";
 
 export async function POST(request) {
   const rawBody = new Uint8Array(await request.arrayBuffer());
@@ -23,6 +23,6 @@ export async function POST(request) {
   if (!bullet) return new Response("ignored: empty", { status: 200 });
 
   const result = await addBullet({ id: message.id, bullet, appendBullet });
-  if (result === "added") await placeSticker(message.space.id, message.id);
+  if (result === "added") await react(message.space.id, message.id);
   return new Response(result, { status: 200 });
 }

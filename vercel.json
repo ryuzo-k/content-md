@@ -3,6 +3,8 @@
   "framework": null,
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- . ':(exclude)content.md' ':(exclude).ids'",
   "functions": {
-    "api/spectrum.mjs": { "includeFiles": "sticker.png", "maxDuration": 60 }
+    "api/spectrum.mjs": {
+      "maxDuration": 60
+    }
   }
 }

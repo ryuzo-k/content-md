@@ -15,3 +15,4 @@
 - のキーやクリ
 - e で送り、クリップ
 - オンにしてもらえば、あなた
+- https://ryuzokijima.com/other/content-md

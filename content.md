@@ -8,3 +8,4 @@
 - mma選手って、練習でもマジで⚪︎し合う感じなの？てか試合って、本気だった場合、暗殺術とかで1発ではないの？
 - <meta charset='utf-8'><p data-pm-slice="1 1 []">dsds</p>
 - <meta charset='utf-8'><p data-pm-slice="1 1 []">dsds</p>
+- clipboard test (delete)

@@ -20,3 +20,4 @@
 - は何も見えません。 記録には残り
 - https://www.youtube.com/watch?v=fXbKOs2cozU
 - https://www.youtube.com/watch?v=LX_4HSqMX5g&list=LL&index=3
+- https://www.youtube.com/watch?v=g5GaBnavBrY&t=2753s

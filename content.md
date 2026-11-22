@@ -12,4 +12,3 @@
 - https://www.youtube.com/watch?v=g5GaBnavBrY
 - https://ryuzokijima.com/
 - https://www.youtube.com/watch?v=g5GaBnavBrY
-- content.md app send test (delete)

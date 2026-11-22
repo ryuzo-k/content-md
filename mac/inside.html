@@ -1,0 +1,100 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#fff}canvas{display:block}</style><body><script>
+  function rng(seed) {
+    return () => {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function spline(pts, step = 2) {
+    const out = [];
+    const P = [pts[0], ...pts, pts[pts.length - 1]];
+    for (let i = 1; i < P.length - 2; i++) {
+      const [p0, p1, p2, p3] = [P[i - 1], P[i], P[i + 1], P[i + 2]];
+      const d = (a, b) => Math.max(Math.hypot(b[0] - a[0], b[1] - a[1]) ** 0.5, 1e-4);
+      const t0 = 0, t1 = t0 + d(p0, p1), t2 = t1 + d(p1, p2), t3 = t2 + d(p2, p3);
+      const n = Math.max(2, Math.ceil(Math.hypot(p2[0] - p1[0], p2[1] - p1[1]) / step));
+      for (let k = 0; k < n; k++) {
+        const t = t1 + (t2 - t1) * k / n;
+        const lerp = (a, b, ta, tb) => [((tb - t) * a[0] + (t - ta) * b[0]) / (tb - ta), ((tb - t) * a[1] + (t - ta) * b[1]) / (tb - ta)];
+        const A1 = lerp(p0, p1, t0, t1), A2 = lerp(p1, p2, t1, t2), A3 = lerp(p2, p3, t2, t3);
+        const B1 = lerp(A1, A2, t0, t2), B2 = lerp(A2, A3, t1, t3);
+        out.push(lerp(B1, B2, t1, t2));
+      }
+    }
+    out.push(pts[pts.length - 1]);
+    return out;
+  }
+  // Hand-drawn: a slow, small wobble across the line.
+  function wobble(pts, seed) {
+    const R = rng(seed);
+    const f1 = 0.05 + R() * 0.03, f2 = 0.17 + R() * 0.05, p1 = R() * 6.3, p2 = R() * 6.3;
+    let s = 0;
+    return pts.map((p, i) => {
+      if (i) s += Math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]);
+      const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)];
+      const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+      const w = 0.55 * Math.sin(s * f1 + p1) + 0.3 * Math.sin(s * f2 + p2);
+      return [p[0] - dy / l * w, p[1] + dx / l * w];
+    });
+  }
+  // A line with the distance along it at every point.
+  const measured = pts => {
+    const cum = [0];
+    for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    return { pts, cum, len: cum[cum.length - 1] };
+  };
+  const at = (m, s) => {
+    let i = 1;
+    while (i < m.cum.length - 1 && m.cum[i] < s) i++;
+    const f = (s - m.cum[i - 1]) / ((m.cum[i] - m.cum[i - 1]) || 1);
+    const a = m.pts[i - 1], b = m.pts[i];
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+  };
+  // the part of a line between two distances along it
+  const part = (m, a, b) => {
+    a = Math.max(0, a); b = Math.min(m.len, b);
+    if (b <= a) return [];
+    const out = [at(m, a)];
+    for (let i = 0; i < m.pts.length; i++) if (m.cum[i] > a && m.cum[i] < b) out.push(m.pts[i]);
+    out.push(at(m, b));
+    return out;
+  };
+  const ease = t => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+  const clamp01 = t => Math.max(0, Math.min(1, t));
+const W = 936, H = 190, LINE = 1.35, FONT = '15px "Times New Roman", Times, serif';
+const c = document.createElement('canvas'); document.body.append(c);
+const dpr = 3; c.width = W*dpr; c.height = H*dpr; c.style.width = W+'px'; c.style.height = H+'px';
+const ctx = c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+ctx.strokeStyle='#000'; ctx.lineWidth=LINE; ctx.lineCap='round'; ctx.lineJoin='round';
+let seed = 1;
+const draw = pts => { const closed = pts[0][0]===pts.at(-1)[0] && pts[0][1]===pts.at(-1)[1]; pts = wobble(spline(pts), seed++); if (closed) { const n=8; for (let i=0;i<n;i++){ const f=i/n; const a=pts.at(-n+i), b=pts[0]; pts[pts.length-n+i]=[a[0]*(1-f)+b[0]*f, a[1]*(1-f)+b[1]*f]; } pts.push(pts[0]); } ctx.beginPath(); ctx.moveTo(...pts[0]); for (const p of pts.slice(1)) ctx.lineTo(...p); ctx.stroke(); };
+const seg = (a,b) => draw([a,[(a[0]+b[0])/2,(a[1]+b[1])/2],b]);
+// rounded rectangle as one hand-drawn line
+const rrect = (x,y,w,h,r) => {
+  const pts=[]; const k=r*0.3;
+  pts.push([x+r,y],[x+w/2,y],[x+w-r,y],[x+w-k,y+k],[x+w,y+r],[x+w,y+h/2],[x+w,y+h-r],[x+w-k,y+h-k],[x+w-r,y+h],[x+w/2,y+h],[x+r,y+h],[x+k,y+h-k],[x,y+h-r],[x,y+h/2],[x,y+r],[x+k,y+k],[x+r+1,y]);
+  draw(pts);
+};
+const arrow = (x0,x1,y) => { draw([[x0,y],[(x0+x1)/2,y-0.6],[x1,y]]); seg([x1,y],[x1-7,y-5]); seg([x1,y],[x1-7,y+5]); };
+const label = (t,cx,cy) => { ctx.font=FONT; ctx.fillStyle='#000'; ctx.textBaseline='middle'; ctx.fillText(t, cx-ctx.measureText(t).width/2, cy); };
+const Y = 95;
+// the same box as before, opened up
+rrect(20, Y-55, 716, 110, 12);
+const K = 34;
+rrect(44, Y-K/2, K, K, 6); rrect(88, Y-K/2, K, K, 6);
+draw([[61-7,Y+4],[61,Y-4],[61+7,Y+4]]);
+draw([[105-10,Y-4],[105-4,Y-4],[105+4,Y+4],[105+10,Y+4]]); seg([105+2,Y-4],[105+10,Y-4]);
+const step = (x,w,t) => { rrect(x, Y-22, w, 44, 8); label(t, x+w/2, Y+1); };
+arrow(134, 170, Y); step(180, 140, 'Copy the selection');
+arrow(330, 366, Y); step(376, 176, 'Put the clipboard back');
+arrow(562, 598, Y); step(608, 104, 'Send');
+// out of the box, to iMessage
+arrow(712, 798, Y);
+(() => { const x=810,y=Y-24,w=104,h=46,r=20,k=r*0.3;
+  draw([[x+r,y],[x+w/2,y],[x+w-r,y],[x+w-k,y+k],[x+w,y+h/2],[x+w-k,y+h-k],[x+w-r,y+h],[x+w/2,y+h],[x+r+6,y+h],[x+8,y+h+9],[x+12,y+h-4],[x+k,y+h-k],[x,y+h/2],[x+k,y+k],[x+r,y]]);
+  label('iMessage', x+w/2, Y-1); })();
+document.title='done';
+</script>

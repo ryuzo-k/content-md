@@ -63,7 +63,7 @@
   };
   const ease = t => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
   const clamp01 = t => Math.max(0, Math.min(1, t));
-const W = 600, H = 170, LINE = 1.35, FONT = '15px "Times New Roman", Times, serif';
+const W = 666, H = 170, LINE = 1.35, FONT = '15px "Times New Roman", Times, serif';
 const c = document.createElement('canvas'); document.body.append(c);
 const dpr = 3; c.width = W*dpr; c.height = H*dpr; c.style.width = W+'px'; c.style.height = H+'px';
 const ctx = c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -81,19 +81,14 @@ const rrect = (x,y,w,h,r) => {
 const arrow = (x0,x1,y) => { draw([[x0,y],[(x0+x1)/2,y-0.6],[x1,y]]); seg([x1,y],[x1-7,y-5]); seg([x1,y],[x1-7,y+5]); };
 const label = (t,cx,cy) => { ctx.font=FONT; ctx.fillStyle='#000'; ctx.textBaseline='middle'; ctx.fillText(t, cx-ctx.measureText(t).width/2, cy); };
 const Y = 85;
-// keys: control and option
-const K = 40;
-rrect(44, Y-K/2, K, K, 7); rrect(94, Y-K/2, K, K, 7);
-// ⌃ drawn
-draw([[64-8,Y+4],[64,Y-5],[64+8,Y+4]]);
-// ⌥ drawn
-draw([[114-11,Y-5],[114-4,Y-5],[114+4,Y+5],[114+11,Y+5]]); seg([114+2,Y-5],[114+11,Y-5]);
-arrow(152, 214, Y);
-// the app: one box
-rrect(228, Y-30, 140, 60, 9); label('content.md', 298, Y+1);
-arrow(384, 446, Y);
-// iMessage: a speech bubble
-(() => { const x=460,y=Y-24,w=104,h=46,r=20,k=r*0.3;
+// one thing you install: the two keys are part of it
+rrect(150, Y-40, 170, 80, 10);
+const K = 38;
+rrect(185, Y-K/2, K, K, 7); rrect(247, Y-K/2, K, K, 7);
+draw([[204-8,Y+4],[204,Y-5],[204+8,Y+4]]);
+draw([[266-11,Y-5],[266-4,Y-5],[266+4,Y+5],[266+11,Y+5]]); seg([266+2,Y-5],[266+11,Y-5]);
+arrow(336, 398, Y);
+(() => { const x=412,y=Y-24,w=104,h=46,r=20,k=r*0.3;
   draw([[x+r,y],[x+w/2,y],[x+w-r,y],[x+w-k,y+k],[x+w,y+h/2],[x+w-k,y+h-k],[x+w-r,y+h],[x+w/2,y+h],[x+r+6,y+h],[x+8,y+h+9],[x+12,y+h-4],[x+k,y+h-k],[x,y+h/2],[x+k,y+k],[x+r,y]]);
   label('iMessage', x+w/2, Y-1); })();
 document.title='done';

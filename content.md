@@ -6,3 +6,4 @@
 - https://www.youtube.com/watch?v=g5GaBnavBrY
 - https://blog.samaltman.com/the-gentle-singularity
 - mma選手って、練習でもマジで⚪︎し合う感じなの？てか試合って、本気だった場合、暗殺術とかで1発ではないの？
+- す。出てきたら、設定でショートカットをオンにしてください。オンにした後は二度と出ません。

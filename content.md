@@ -4,3 +4,4 @@
 - https://www.youtube.com/watch?v=LplNh5pUlZc
 - https://www.youtube.com/watch?v=YxnQaGiHlF4
 - https://nat.org/
+- https://x.com/elonmusk/status/2124619599882920139?a=aCfBLZP4Y34ZXcAPd5I&s=10

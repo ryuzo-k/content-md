@@ -10,3 +10,4 @@
 - のアプリの上で押さないと試せないので、私はまだ試せていません。押してもらったら、届いたかどうかを私が記録です
 - 1 Thing People Get Wrong Abou
 - https://www.youtube.com/watch?v=g5GaBnavBrY
+- https://ryuzokijima.com/

@@ -13,3 +13,4 @@
 - https://ryuzokijima.com/
 - https://www.youtube.com/watch?v=g5GaBnavBrY
 - のキーやクリ
+- e で送り、クリップ

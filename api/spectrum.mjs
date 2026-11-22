@@ -1,8 +1,7 @@
 // Photon（Spectrum）から届いた iMessage を受け取る。
-// 本人から届いた文のメッセージを content.md に1つの箇条書きとして足し、足せたら ✅ のリアクションを付ける。文の返信はしない。
+// 本人から届いた文のメッセージを、1回の送信＝1つの箇条書きとして content.md に足し、足せたら ✅ のリアクションを付ける。文の返信はしない。
 import { verifySpectrumSignature, slimEnvelopeSchema } from "@spectrum-ts/core/webhook";
-import { toBullet, appendBullet } from "../lib/bullet.mjs";
-import { addBullet } from "../lib/github.mjs";
+import { addMessage } from "../lib/github.mjs";
 import { react } from "../lib/react.mjs";
 
 export async function POST(request) {
@@ -19,10 +18,7 @@ export async function POST(request) {
   if (message.sender?.id !== process.env.OWNER_ID) return new Response("ignored: sender", { status: 200 });
   if (message.content.type !== "text") return new Response(`ignored: ${message.content.type}`, { status: 200 });
 
-  const bullet = toBullet(message.content.text);
-  if (!bullet) return new Response("ignored: empty", { status: 200 });
-
-  const result = await addBullet({ id: message.id, bullet, appendBullet });
+  const result = await addMessage({ id: message.id, time: message.timestamp, text: message.content.text });
   if (result === "added") await react(message.space.id, message.id);
   return new Response(result, { status: 200 });
 }

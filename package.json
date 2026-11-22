@@ -1,0 +1,10 @@
+{
+  "name": "content-md",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@photon-ai/advanced-imessage": "^2.5.0",
+    "@spectrum-ts/core": "^12.16.0",
+    "spectrum-ts": "^12.16.0"
+  }
+}

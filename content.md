@@ -4,3 +4,4 @@
 - https://www.youtube.com/watch?v=LplNh5pUlZc
 - https://www.youtube.com/watch?v=YxnQaGiHlF4
 - https://www.youtube.com/watch?v=g5GaBnavBrY
+- https://blog.samaltman.com/the-gentle-singularity

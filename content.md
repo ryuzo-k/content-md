@@ -17,3 +17,4 @@
 - [Emil Kowalski (@emilkowalski) on X](https://x.com/emilkowalski/status/2124828365823615017?a=CTqbPl69CIvP19qVB_8&s=10)
 - [- YouTube](https://youtube.com/watch?v=36L9cYkHyZM)
 - [Shridhar (@shridharathi) on X](https://x.com/shridharathi/status/2124872477985644633)
+- sizu.me/posts/kf5rzdki0zwe/edit

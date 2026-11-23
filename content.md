@@ -15,3 +15,4 @@
   と。
   まあ無限の通りがあるから怖いけど
 - [Emil Kowalski (@emilkowalski) on X](https://x.com/emilkowalski/status/2124828365823615017?a=CTqbPl69CIvP19qVB_8&s=10)
+- [- YouTube](https://youtube.com/watch?v=36L9cYkHyZM)

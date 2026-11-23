@@ -1,5 +1,5 @@
 // content.md — ⌃⌥ を押して離すと、選んでいる文を iMessage で content.md の番号に送る。
-// 1. 選んでいる文をコピー（⌘C を送る） 2. iMessage で送る 3. クリップボードを元に戻す
+// 1. 選んでいる文を読む（アクセシビリティで直接。読めないアプリだけ ⌘C でコピーしてクリップボードを戻す） 2. iMessage で送る
 // 要る許可：アクセシビリティ（キーを見る・⌘C を送る）、オートメーション（メッセージ）。どちらもこのアプリに1回だけ。
 import AppKit
 import ApplicationServices
@@ -40,16 +40,41 @@ func restore(_ snap: [[NSPasteboard.PasteboardType: Data]]) {
     if !items.isEmpty { pb.writeObjects(items) }
 }
 
+// 選んでいる文を、キーを押さずにアクセシビリティで直接読む（入力の言葉・クリップボードに関係しない）。
+// Chrome などは、こちらから頼まないと中身を見せないので、先に AXManualAccessibility を立てる。
+func selectedTextByAX() -> String? {
+    let sys = AXUIElementCreateSystemWide()
+    var app: CFTypeRef?
+    if AXUIElementCopyAttributeValue(sys, kAXFocusedApplicationAttribute as CFString, &app) == .success, let a = app {
+        AXUIElementSetAttributeValue(a as! AXUIElement, "AXManualAccessibility" as CFString, kCFBooleanTrue)
+    }
+    var el: CFTypeRef?
+    guard AXUIElementCopyAttributeValue(sys, kAXFocusedUIElementAttribute as CFString, &el) == .success, let e = el else { return nil }
+    var v: CFTypeRef?
+    guard AXUIElementCopyAttributeValue(e as! AXUIElement, kAXSelectedTextAttribute as CFString, &v) == .success, let t = v as? String else { return nil }
+    return t.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : t
+}
+
+// 読めない時だけ ⌘C。字の情報（c）も付けて、日本語入力の時でもコピーとして届くようにする。
 func pressCopy() {
-    let src = CGEventSource(stateID: .combinedSessionState)
+    let src = CGEventSource(stateID: .hidSystemState)
     for down in [true, false] {
         let e = CGEvent(keyboardEventSource: src, virtualKey: 8, keyDown: down)   // 8 = C
         e?.flags = .maskCommand
+        var c: UniChar = 0x63
+        e?.keyboardSetUnicodeString(stringLength: 1, unicodeString: &c)
         e?.post(tap: .cghidEventTap)
     }
 }
 
+func deliver(_ text: String, _ how: String) {
+    if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { log("empty (\(how))"); return }
+    log(send(text) ? "sent len=\(text.count) via \(how)" : "failed")
+}
+
 func fire() {
+    let front = NSWorkspace.shared.frontmostApplication?.bundleIdentifier ?? "?"
+    if let t = selectedTextByAX() { deliver(t, "ax \(front)"); return }
     let pb = NSPasteboard.general
     let snap = snapshot()
     let before = pb.changeCount
@@ -59,11 +84,10 @@ func fire() {
         if pb.changeCount != before {
             let text = pb.string(forType: .string) ?? ""
             restore(snap)
-            if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { log("empty"); return }
-            log(send(text) ? "sent len=\(text.count)" : "failed")
-        } else if waited < 0.6 {
+            deliver(text, "copy \(front)")
+        } else if waited < 1.0 {
             waited += 0.03; DispatchQueue.main.asyncAfter(deadline: .now() + 0.03, execute: check)
-        } else { log("nothing selected") }
+        } else { log("nothing selected in \(front)") }
     }
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.03, execute: check)
 }

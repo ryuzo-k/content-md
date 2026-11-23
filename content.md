@@ -10,3 +10,7 @@
 - https://youtu.be/fDLLv5aTO3k
 - https://www.greene.sh/compression-and-intelligence/
 - youtube.com/watch?v=g5GaBnavBrY
+- 全ての物事に誠実に向き合う：つまり良い経験を積む
+  子供の頃に、伝えるべきは、全ては理解しないかもだが、全て本気でやる。そうしないといい経験データが取れない
+  と。
+  まあ無限の通りがあるから怖いけど

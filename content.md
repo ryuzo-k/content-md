@@ -6,3 +6,4 @@
 - https://nat.org/
 - https://x.com/elonmusk/status/2124619599882920139?a=aCfBLZP4Y34ZXcAPd5I&s=10
 - https://youtu.be/QP6H9t17KBc
+  - 思考可視化の若干つまらん？いや参考になる？コンテンツ

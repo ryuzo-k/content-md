@@ -9,3 +9,4 @@
   - 思考可視化の若干つまらん？いや参考になる？コンテンツ
 - https://youtu.be/fDLLv5aTO3k
 - https://www.greene.sh/compression-and-intelligence/
+- youtube.com/watch?v=g5GaBnavBrY

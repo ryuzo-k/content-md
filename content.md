@@ -14,3 +14,4 @@
   子供の頃に、伝えるべきは、全ては理解しないかもだが、全て本気でやる。そうしないといい経験データが取れない
   と。
   まあ無限の通りがあるから怖いけど
+- [Emil Kowalski (@emilkowalski) on X](https://x.com/emilkowalski/status/2124828365823615017?a=CTqbPl69CIvP19qVB_8&s=10)

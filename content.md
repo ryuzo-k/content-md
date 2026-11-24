@@ -24,3 +24,4 @@
 - [Ian Curtis (@XRarchitect) on X](https://x.com/XRarchitect/status/2124960145558188152)
 - [Bailey Pumfleet (@pumfleet) on X](https://x.com/pumfleet/status/2124858193582895221)
 - [Mastery Mindset (@_masterymindset) on X](https://x.com/_masterymindset/status/2123151760843800814)
+- [Mastery Mindset (@_masterymindset) on X](https://x.com/_masterymindset/status/2123151760843800814)

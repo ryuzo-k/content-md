@@ -26,3 +26,4 @@
 - [Mastery Mindset (@_masterymindset) on X](https://x.com/_masterymindset/status/2123151760843800814)
 - [Mastery Mindset (@_masterymindset) on X](https://x.com/_masterymindset/status/2123151760843800814)
 - [- YouTube](https://youtube.com/watch?v=wUrtcsDTDek)
+- [Google DeepMind (@GoogleDeepMind) on X](https://x.com/GoogleDeepMind/status/2125286866496671873)

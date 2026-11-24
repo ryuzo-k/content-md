@@ -19,3 +19,4 @@
 - [Shridhar (@shridharathi) on X](https://x.com/shridharathi/status/2124872477985644633)
 - sizu.me/posts/kf5rzdki0zwe/edit
 - sizu.me/posts/8n2ifw6i702z/edit
+- [David Hill (@iamdavidhill) on X](https://x.com/iamdavidhill/status/2124986830236106897)

@@ -20,3 +20,4 @@
 - sizu.me/posts/kf5rzdki0zwe/edit
 - sizu.me/posts/8n2ifw6i702z/edit
 - [David Hill (@iamdavidhill) on X](https://x.com/iamdavidhill/status/2124986830236106897)
+- [Roland Graser (@roland_graser) on X](https://x.com/roland_graser/status/2124931736790520270)

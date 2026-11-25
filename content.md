@@ -28,3 +28,4 @@
 - [- YouTube](https://youtube.com/watch?v=wUrtcsDTDek)
 - [Google DeepMind (@GoogleDeepMind) on X](https://x.com/GoogleDeepMind/status/2125286866496671873)
 - [Amanda Askell (@AmandaAskell) on X](https://x.com/AmandaAskell/status/1917644154966007956)
+- 緊急事態発生　macbookが勝手に再起動していた。訴訟をしたいほどむかついている。　これよって壊れたりとかした？tmpとか記憶とか。非常に最悪

@@ -33,3 +33,4 @@
   緊急事態発生　macbookが勝手に再起動していた。訴訟をしたいほどむかついている。　これよって壊れたりとかした？tmpとか記憶とか。非常に最悪
 - 12時21分38秒に、Mac が固まって再起動しています。システムが92秒のあいだ応答しなかったので、macOS が自分で再起動しました（記録の名前は「watchdog timeout」）。誰かが操作したのでも、アップデートでもありません。再起動の直後に、Mac の負荷が非常に高く出ていました。昨日 Chrome が40GBまで膨らんだ件と同じく、メモリが詰まって固まった可能性が一番高いです。
 - [- YouTube](https://youtube.com/watch?v=cjODOqTJSbM)
+- [Heirloom Hardware — Modem](https://modemworks.com/projects/heirloom-hardware/)

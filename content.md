@@ -38,3 +38,4 @@
 - [- YouTube](https://youtube.com/watch?v=qPIz0V25jpM&si=F0BjMGcgrB6BBBAZ)
 - 俺が学習するべきモノ
   俺の思想から考えて、これを知ったら多分ドンピシャで、今後学ぶのを偶然ではなく今からできるモノ
+- [novia (@noviachao) on X](https://x.com/noviachao/status/2125349990004625804)

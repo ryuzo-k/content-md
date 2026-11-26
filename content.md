@@ -39,3 +39,4 @@
 - 俺が学習するべきモノ
   俺の思想から考えて、これを知ったら多分ドンピシャで、今後学ぶのを偶然ではなく今からできるモノ
 - [novia (@noviachao) on X](https://x.com/noviachao/status/2125349990004625804)
+- [Back to Basics](https://gobacktobasics.com)

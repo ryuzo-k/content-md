@@ -48,3 +48,12 @@
 - [- YouTube](https://youtu.be/Ut_EeTRzkn4)
 - [- YouTube](https://youtube.com/watch?v=_lgqofIJIws)
 - [will depue (@willdepue) on X](https://x.com/willdepue/status/2126591692891414572)
+- - プロジェクトへいるメアリー
+  - オデッセイ
+
+
+
+  - 風立ちぬ
+  - 千と千尋の神隠し
+  - ボトムズ
+  - 攻殻機動隊　Netflix
